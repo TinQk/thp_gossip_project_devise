@@ -1,0 +1,14 @@
+<h1>Création d'un gossip</h1>
+
+<p>Entre tes infos</p><br>
+
+<%= form_for @gossip do |f| %>
+
+  <%= label_tag 'Que sais-tu ?' %>
+  <%= f.text_field :content, placeholder: "blablabla" %><br>
+
+  <%= f.submit "Valide ton gossip !" %>
+
+<% end %>
+
+<p><a href="<%= home_path %>"><button type="button" name="button">Revenir à la page d'accueil</button></a></p>

@@ -1,0 +1,41 @@
+<h1>THP ANONYMOUS GOSSIP PROJECT</h1>
+
+
+<% if user_signed_in? %>
+
+  <h3>Bonjour à toi, <%= current_user.anonymous_username %> !<br> Bienvenue sur le meilleur forum de commérage au monnnnnde !</h1>
+
+  <p><b>Sans plus attendre, je te présente la liste des potins du moment :</b><br><br>
+
+    <div class=row>
+      <% @gossips.each do |gossip| %>
+
+        <div class="card col-lg-2 col-sm-4" >
+          <div class="card-body">
+            <div style="display: flex">
+              <h5 class="card-title">
+                Gossip numéro : <%= gossip.id %>
+              </h5>
+            </div>
+            <h6 class="card-subtitle mb-2 text-muted"> <strong>Auteur</strong> : <%=gossip.user.anonymous_username%></h6>
+            <p class="card-text" > <strong>Contenu</strong>: <%= gossip.content %> </p>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <%= link_to 'Détails', gossip_path(gossip.id), class:"btn btn-link" %>
+            </div>
+            <div class="col-6">
+              <% if current_user == gossip.user %>
+                <%= link_to "Destroy gossip", gossip_path(gossip), method: :delete, class:"btn btn-link" %>
+              <%end%>
+            </div>
+          </div>
+      </div>
+      <% end %>
+    </div>
+
+<% else %>
+
+  <p>Hey, log in or sign in !</p>
+
+<% end %>
